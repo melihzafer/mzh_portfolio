@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio - Melih Zafer Hyusein
 
-## Getting Started
+A modern, production-ready personal portfolio built with Next.js 15, featuring advanced animations, accessibility, and exceptional user experience.
 
-First, run the development server:
+## ✨ Features
+
+### 🎨 Signature UX
+- **Hero Typewriter Effect**: Cycles through roles with optional glitch animation
+- **Magnetic CTAs**: Buttons follow cursor with smooth spring animations  
+- **3D Tilt Cards**: Project cards with perspective transforms (desktop only)
+- **Code Editor About**: VS Code-inspired layout with tabs and line numbers
+- **Animated Skill Bars**: Progress animations triggered by scroll intersection
+- **Command Palette**: ⌘K navigation for quick access to pages and actions
+
+### 🚀 Performance & Accessibility
+- **Core Web Vitals**: LCP <1.5s, CLS <0.1, optimized bundle size
+- **Reduced Motion**: Respects `prefers-reduced-motion` with graceful fallbacks
+- **Keyboard Navigation**: Full keyboard support with visible focus indicators
+- **Screen Readers**: Semantic HTML and proper ARIA labels
+- **Mobile Optimized**: Touch-friendly interactions and responsive design
+
+### 🛠 Technical Stack
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: TailwindCSS 4 + SCSS modules
+- **Animation**: Framer Motion 12
+- **UI Kit**: Custom shadcn/ui components
+- **Icons**: Lucide React
+- **Content**: MDX for case studies
+- **Form Handling**: React Hook Form + Zod validation
+
+## 🏃‍♂️ Quick Start
+
+### Prerequisites
+- Node.js 20+ 
+- npm/pnpm/yarn
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit http://localhost:3000 (or the port shown in your terminal) to view your portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` to `.env.local` and fill in values:
 
-## Learn More
+- GH_USER: your GitHub username (for Works auto-sync)
+- GITHUB_TOKEN: optional token to raise GitHub API rate limits
+- REVALIDATE_SECRET: secret to call the revalidation endpoint
 
-To learn more about Next.js, take a look at the following resources:
+Revalidate cached works after changing topics/releases:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+GET /api/revalidate?secret=YOUR_SECRET
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Project Structure
 
-## Deploy on Vercel
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── about/             # Code editor about page
+│   ├── works/             # Filterable project grid
+│   └── contact/           # Contact form
+├── components/
+│   ├── atoms/             # Button, SkillBar, TiltCard, etc.
+│   ├── molecules/         # WorkCard, TypewriterEffect, etc.
+│   ├── organisms/         # Header, Footer
+│   └── ui/                # shadcn/ui components
+├── lib/
+│   ├── projects.ts        # Project data and utilities
+│   └── utils.ts           # Helper functions
+└── styles/
+    ├── globals.scss       # Global styles and animations
+    └── tokens.scss        # Design system tokens
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎯 Key Components
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### TypewriterEffect
+```tsx
+<TypewriterEffect
+  phrases={["Full-Stack Dev", "React Expert", "Design-Driven"]}
+  enableGlitch={true}
+  className="text-4xl font-bold"
+/>
+```
+
+### Button with Magnetic Effect
+```tsx
+<Button variant="magnetic" size="lg">
+  Get In Touch
+</Button>
+```
+
+### Command Palette
+Press `⌘K` (Mac) or `Ctrl+K` (Windows/Linux) to open the command palette for quick navigation.
+
+## 🎨 Design System
+
+### Color Tokens
+```scss
+:root {
+  --bg: #0A0F0F;           // Primary background
+  --surface: #121A1A;      // Card/elevated surfaces  
+  --text: #E8F2F2;         // Primary text
+  --accent: #0f8555;       // Brand accent (customizable)
+  --border: #1F2929;       // Subtle borders
+}
+```
+
+### Typography
+- **Display**: Inter (headings, 600-900 weights)
+- **Body**: Inter (UI text, 400-600 weights)  
+- **Code**: JetBrains Mono (400-700 weights)
+
+### Spacing Scale
+Based on 4px grid: `4px, 8px, 12px, 16px, 24px, 32px, 48px`
+
+## 🧪 Development Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+The portfolio is optimized for Vercel deployment:
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+## 📊 Performance Budget
+
+- **JavaScript Bundle**: ≤220kB gzipped
+- **Largest Contentful Paint**: <1.5s
+- **Cumulative Layout Shift**: <0.1
+- **First Input Delay**: <100ms
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+**Built with ❤️ by [Melih Zafer Hyusein](https://github.com/mzh)**

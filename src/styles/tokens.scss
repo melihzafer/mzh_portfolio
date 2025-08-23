@@ -1,0 +1,46 @@
+// Design system tokens - Dark-first, clean, confident
+:root {
+  // Base colors
+  --bg: #0A0F0F;
+  --surface: #121A1A;
+  --surface-2: #1F2929;
+  --text: #E8F2F2;
+  --muted: #8A9999;
+  --accent: #0f8555; // Primary brand color - replace with your hex
+  --accent-600: #0d6b45;
+  --accent-dark: #093b22; // Darker green for hovers and primary buttons
+  --border: #1F2929;
+  --success: #22C55E;
+  --error: #EF4444;
+  
+  // Matrix/Hacking theme colors
+  --matrix-green: #00ff41;
+  --matrix-dark: #003d10;
+  --coffee: #6F4E37;
+  --coffee-light: #8B6F47;
+  --terminal-green: #00C851;
+  --warning: #ffab00;
+  --danger: #ff5722;
+  
+  // Enhanced gradients
+  --gradient-matrix: linear-gradient(135deg, var(--accent) 0%, var(--matrix-green) 100%);
+  --gradient-coffee: linear-gradient(135deg, var(--coffee) 0%, var(--coffee-light) 100%);
+  --gradient-terminal: linear-gradient(135deg, var(--bg) 0%, var(--matrix-dark) 100%);
+
+  // Typography
+  --font-display: 'Inter', ui-sans-serif, system-ui;
+  --font-sans: 'Inter', ui-sans-serif, system-ui;
+  --font-mono: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+
+  // Spacing scale: 4/8/12/16/24/32/48
+  --space-1: 0.25rem;   // 4px
+  --space-2: 0.5rem;    // 8px
+  --space-3: 0.75rem;   // 12px
+  --space-4: 1rem;      // 16px
+  --space-6: 1.5rem;    // 24px
+  --space-8: 2rem;      // 32px
+  --space-12: 3rem;     // 48px
+
+  // Max text width for readability
+  --max-text-width: 75ch;
+}
