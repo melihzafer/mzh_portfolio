@@ -146,6 +146,18 @@ npm i -g vercel
 vercel
 ```
 
+### GitHub webhook (auto-revalidate on releases)
+
+To automatically refresh portfolio data when you publish a GitHub release, configure a webhook for your GitHub repo that targets the deployed endpoint:
+
+- URL: https://<YOUR_SITE_DOMAIN>/api/github/webhook
+- Content type: application/json
+- Secret: set to the same value as `GITHUB_WEBHOOK_SECRET` in your deployment environment
+- Events: choose the "Release" event (or select "Let me select individual events" and enable `release`)
+
+After deploying the site and setting `GITHUB_WEBHOOK_SECRET` in your deployment platform (Netlify/Vercel), create or re-publish a release to test. The webhook handler verifies the signature and calls Next's `revalidateTag('github')` to refresh cached repo data.
+
+
 ## 📊 Performance Budget
 
 - **JavaScript Bundle**: ≤220kB gzipped
