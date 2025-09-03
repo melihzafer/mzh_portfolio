@@ -52,7 +52,7 @@ Visit http://localhost:3000 (or the port shown in your terminal) to view your po
 Copy `.env.example` to `.env.local` and fill in values:
 
 - GH_USER: your GitHub username (for Works auto-sync)
-- GITHUB_TOKEN: optional token to raise GitHub API rate limits
+- GH_API_TOKEN: optional token to raise GitHub API rate limits (use this name in CI)
 - REVALIDATE_SECRET: secret to call the revalidation endpoint
 
 Revalidate cached works after changing topics/releases:

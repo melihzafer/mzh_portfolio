@@ -24,8 +24,10 @@ export type Release = {
   published_at?: string | null;
 };
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const octokit = new Octokit({ auth: GITHUB_TOKEN });
+// GitHub Actions forbids secrets starting with "GITHUB_".
+// Prefer GH_API_TOKEN but fall back to GITHUB_TOKEN for local/dev compatibility.
+const GH_API_TOKEN = process.env.GH_API_TOKEN || process.env.GITHUB_TOKEN;
+const octokit = new Octokit({ auth: GH_API_TOKEN });
 
 export async function getAllRepos(owner: string): Promise<Repo[]> {
   let repos: Repo[] = [];
@@ -100,7 +102,7 @@ export function hasPortfolioTopic(repoTopics: string[], allow = ["ready","live",
 }
 
 export async function filterWorks(owner: string, repos: Repo[]): Promise<Repo[]> {
-  const tokenPresent = Boolean(process.env.GITHUB_TOKEN);
+  const tokenPresent = Boolean(process.env.GH_API_TOKEN || process.env.GITHUB_TOKEN);
   // Base filter: exclude forks/archived
   const base = repos.filter(r => !r.fork && !r.archived);
 
