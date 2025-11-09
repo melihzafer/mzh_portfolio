@@ -127,10 +127,10 @@ export const testimonialsData = [
     avatar: undefined as unknown as string
   },
   {
-    content: "Melih designed the logo for S&S Garagge, and he absolutely captured the spirit of our brand. He has a sharp eye for design and instantly understood our vision, delivering a powerful and professional identity that perfectly represents us.",
+    content: "Melih designed the logo for S&S Garage, and he absolutely captured the spirit of our brand. He has a sharp eye for design and instantly understood our vision, delivering a powerful and professional identity that perfectly represents us.",
     author: "Seid Seidov",
     role: "Founder",
-    company: "S&S Garagge",
+    company: "S&S Garage",
     avatar: undefined as unknown as string
   }
 ]
