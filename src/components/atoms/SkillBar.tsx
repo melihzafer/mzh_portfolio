@@ -42,7 +42,7 @@ export default function SkillBar({
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"
             style={{ 
               animationDelay: `${animationDelay}ms`,
-              animationDuration: '1.5s'
+              animationDuration: '0s'
             }}
           />
         </div>

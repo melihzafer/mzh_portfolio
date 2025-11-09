@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 interface Skill {
@@ -40,7 +40,6 @@ export function SkillBars({
   showCategories = true,
   matrixTheme = false 
 }: SkillBarsProps) {
-  const [animatedSkills, setAnimatedSkills] = useState<Record<string, number>>({});
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, threshold: 0.2 });
 
@@ -53,32 +52,14 @@ export function SkillBars({
     return acc;
   }, {} as Record<string, Skill[]>);
 
-  // Animate skill levels when in view
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        const animated: Record<string, number> = {};
-        skills.forEach((skill, index) => {
-          setTimeout(() => {
-            animated[skill.name] = skill.level;
-            setAnimatedSkills(prev => ({ ...prev, [skill.name]: skill.level }));
-          }, index * 150);
-        });
-      }, 300);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isInView, skills]);
-
   const SkillBar = ({ skill, index }: { skill: Skill; index: number }) => {
-    const animatedLevel = animatedSkills[skill.name] || 0;
     const gradientClass = categoryColors[skill.category];
 
     return (
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-        transition={{ delay: index * 0.1, duration: 0.6 }}
+        transition={{ delay: index * 0.05, duration: 0.4 }}
         className="mb-6"
       >
         <div className="flex justify-between items-center mb-2">
@@ -98,7 +79,7 @@ export function SkillBars({
             )}
           </div>
           <span className={`text-sm font-mono ${matrixTheme ? 'text-emerald-400' : 'text-accent'}`}>
-            {Math.round(animatedLevel)}%
+            {skill.level}%
           </span>
         </div>
 
@@ -108,61 +89,30 @@ export function SkillBars({
             matrixTheme ? 'bg-slate-800/30' : 'bg-slate-800'
           }`}>
             {/* Progress bar */}
-            <motion.div
-              className={`h-full bg-gradient-to-r ${gradientClass} relative overflow-hidden`}
-              initial={{ width: 0 }}
-              animate={{ width: `${animatedLevel}%` }}
-              transition={{ 
-                duration: 1.2, 
-                delay: index * 0.1,
-                ease: [0.6, -0.05, 0.01, 0.99]
-              }}
+            <div
+              className={`h-full bg-gradient-to-r ${gradientClass} relative overflow-hidden transition-all duration-500 ease-out`}
+              style={{ width: isInView ? `${skill.level}%` : '0%' }}
             >
-              {/* Matrix-style scanning line */}
-              {matrixTheme && (
-                <motion.div
-                  className="absolute inset-y-0 right-0 w-1 bg-emerald-400 shadow-lg shadow-emerald-400/50"
-                  animate={{
-                    opacity: [0, 1, 0],
-                    scaleY: [0.5, 1, 0.5]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.2
-                  }}
-                />
-              )}
-              
               {/* Shimmer effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                animate={{
-                  x: ['-100%', '100%']
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: index * 0.3,
-                  ease: 'linear'
+              <div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"
+                style={{ 
+                  animationDelay: `${index * 50}ms`,
+                  animationDuration: '2s'
                 }}
               />
-            </motion.div>
+            </div>
           </div>
 
           {/* Skill level indicator */}
-          <motion.div
+          <div
             className={`absolute top-0 h-2 w-1 ${
               matrixTheme ? 'bg-emerald-400 shadow-emerald-400/50' : 'bg-accent'
-            } shadow-lg`}
-            initial={{ left: 0 }}
-            animate={{ left: `${animatedLevel}%` }}
-            transition={{ 
-              duration: 1.2, 
-              delay: index * 0.1,
-              ease: [0.6, -0.05, 0.01, 0.99]
+            } shadow-lg transition-all duration-500 ease-out`}
+            style={{ 
+              left: isInView ? `${skill.level}%` : '0%',
+              transform: 'translateX(-2px)'
             }}
-            style={{ transform: 'translateX(-2px)' }}
           />
         </div>
       </motion.div>

@@ -156,8 +156,8 @@ export default function HeroWithPortrait() {
               {/* Coding status */}
               <div className="flex items-center gap-2 text-sm font-mono">
                 <Coffee className="w-4 h-4 text-coffee" />
-                <span className="text-coffee">Currently brewing:</span>
-                <span className="text-green-600">SpaceX v2</span>
+              <span className="text-coffee">Currently working on:</span>
+                <span className="text-green-300">MERTMAKS EOOD</span>                
               </div>
             </motion.div>
 

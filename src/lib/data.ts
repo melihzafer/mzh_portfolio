@@ -113,43 +113,43 @@ export const aboutData = {
 
 export const testimonialsData = [
   {
-  content: "Melih delivered exceptional work on our e-commerce platform. His attention to detail and technical expertise exceeded our expectations.",
-    author: "Sarah Johnson",
-    role: "Product Manager",
-  company: "TechCorp",
-  avatar: undefined as unknown as string
+    content: "Melih delivered an exceptional website for Restaurant Deliorman that truly captured our essence. His professionalism and vision were so impressive that we've expanded our partnership to have him develop our complete brand webpage. He's an invaluable asset to our digital growth.",
+    author: "Mert Adil",
+    role: "General Manager",
+    company: "Restaurant Deliorman",
+    avatar: undefined as unknown as string
   },
   {
-  content: "Working with Melih was a pleasure. He transformed our design concepts into a beautiful, functional web application.",
-    author: "David Chen",
-    role: "CEO",
-  company: "StartupXYZ",
-  avatar: undefined as unknown as string
+    content: "As a core collaborator at OMNI Tech Solutions, Melih's talent and dedication are foundational to our success. He consistently brings complex technical visions to life with precision and creativity, making him an absolutely fundamental part of our team.",
+    author: "Deniz Memduev",
+    role: "Founder/CEO",
+    company: "OMNI Tech Solutions",
+    avatar: undefined as unknown as string
   },
   {
-  content: "The quality of code and the final product was outstanding. Melih is a true professional who delivers on time.",
-    author: "Emily Rodriguez",
-    role: "CTO",
-  company: "InnovateLab",
-  avatar: undefined as unknown as string
+    content: "Melih designed the logo for S&S Garagge, and he absolutely captured the spirit of our brand. He has a sharp eye for design and instantly understood our vision, delivering a powerful and professional identity that perfectly represents us.",
+    author: "Seid Seidov",
+    role: "Founder",
+    company: "S&S Garagge",
+    avatar: undefined as unknown as string
   }
 ]
 
 export const experienceData = [
   {
-    period: "2022 - Present",
-    role: "Senior Full-Stack Developer",
-    company: "OMNI Tech Solutions",
-    description: "Leading development of complex web applications and mentoring junior developers."
+    period: "2025 - Present",
+    role: "Senior Full-Stack and Mobile Developer",
+    company: "Freelance / OMNI Tech Solutions",
+    description: "Leading development of complex web and mobile applications and mentoring computer science stundets"
   },
   {
-    period: "2020 - 2022",
+    period: "2022 - 2025",
     role: "Frontend Developer",
     company: "Digital Agency Pro",
     description: "Specialized in React development and creating responsive user interfaces."
   },
   {
-    period: "2018 - 2020",
+    period: "2018 - 2022",
     role: "Web Developer",
     company: "Freelance",
     description: "Worked with various clients to build custom websites and web applications."
