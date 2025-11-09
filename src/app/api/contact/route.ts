@@ -2,7 +2,13 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
 // Email sender via Resend. Configure env vars: RESEND_API_KEY and CONTACT_TO_EMAIL
-const resend = new Resend(process.env.RESEND_API_KEY)
+let resend: Resend | null = null
+function getResend(): Resend | null {
+  if (!resend && process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resend
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,7 +31,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Send email via Resend
-    const { error } = await resend.emails.send({
+    const client = getResend()
+    if (!client) {
+      console.warn('Resend client not initialized (missing API key). Logging instead.')
+      console.log('Contact form submission:', { name, email, message })
+      return NextResponse.json({ ok: true, note: 'Email provider not configured' })
+    }
+    const { error } = await client.emails.send({
       from: 'Portfolio <onboarding@resend.dev>',
       to: [process.env.CONTACT_TO_EMAIL!],
       replyTo: email,

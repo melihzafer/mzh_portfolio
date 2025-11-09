@@ -88,8 +88,11 @@ const getWorksCached = unstable_cache(
 );
 
 export async function GET(req: NextRequest) {
-  const owner = process.env.GH_USER || 'melihzafer';
+  const owner = process.env.GH_USER || (process.env.NODE_ENV !== 'production' ? 'melihzafer' : '');
   try {
+    if (!owner) {
+      return NextResponse.json({ error: 'Missing GH_USER environment variable' }, { status: 500 });
+    }
     const { searchParams } = new URL(req.url);
     if (searchParams.get('revalidate') === '1') {
       revalidateTag('github');
@@ -143,7 +146,7 @@ export async function GET(req: NextRequest) {
       works: fallback,
       total: fallback.length,
       error: isRateLimited
-        ? 'GitHub API rate limit hit. Add GITHUB_TOKEN to .env.local to increase limits.'
+  ? 'GitHub API rate limit hit. Add GH_API_TOKEN to your env to increase limits.'
         : `Upstream error: ${msg}`,
       debug: { fallback: true },
     });
